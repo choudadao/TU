@@ -3,6 +3,7 @@ import {renderHeader} from './components/header.js';
 import {renderFooter} from './components/footer.js';
 import {renderScreen,renderVideo,renderGrid,renderServices} from './components/sections.js';
 import {initMotion} from './motion.js';
+import {initSnap} from './snap.js';
 import {moduleMap} from './module-map.js';
 function render(m){
  const renderers={hero:()=>renderScreen(m,renderHeader()),split:()=>renderScreen(m),campaign:()=>renderScreen(m),video:()=>renderVideo(m),categories:()=>renderGrid(m),products:()=>renderGrid(m),stories:()=>renderGrid(m),services:renderServices,footer:renderFooter};
@@ -10,3 +11,4 @@ function render(m){
 }
 document.querySelector('#app').innerHTML=`<div class="opening-stack">${modules.slice(0,2).map(render).join('')}</div>${modules.slice(2).map(render).join('')}`;
 initMotion(motion);
+initSnap();
