@@ -1,3 +1,4 @@
 export const image=(src,alt='',eager=false)=>`<img src="${src}" alt="${alt}" ${eager?'fetchpriority="high"':'loading="lazy"'} decoding="async">`;
-export const caption=m=>`<div class="caption"><h2>${m.title}</h2><a class="text-link" href="${m.target||'#edit'}">${m.link||'DISCOVER'}</a></div>`;
+export const imageStack=(m,alt='',eager=false)=>m.layers?`<div class="image-stack" aria-hidden="true">${m.layers.map(src=>image(src,'',eager)).join('')}</div>`:image(m.image,alt,eager);
+export const caption=m=>`<div class="caption ${m.captionStyle==='arrow'?'caption-arrow':''}"><h2>${m.title}</h2><a class="text-link" href="${m.target||'#edit'}"><span>${m.link||'DISCOVER'}</span>${m.captionStyle==='arrow'?'<span class="down-arrow"><img src="assets/down-arrow.svg" alt=""></span>':''}</a></div>`;
 export const icon=(name,label,className='')=>`<span class="icon ${className}" ${label?`role="img" aria-label="${label}"`:'aria-hidden="true"'}>${image(`assets/${name}.svg`)}</span>`;
