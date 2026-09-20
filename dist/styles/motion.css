@@ -1,0 +1,3 @@
+/* Locked motion: do not edit during node-specific visual updates. */
+.opening-stack{position:relative}.hero{position:sticky;top:0;z-index:1}.split{z-index:2}.shade{position:absolute;inset:0;background:#000;opacity:var(--dim,0);pointer-events:none;z-index:4;will-change:opacity}
+@media(prefers-reduced-motion:reduce){.hero{position:relative}.shade{opacity:0!important;will-change:auto}}
