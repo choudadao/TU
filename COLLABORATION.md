@@ -40,7 +40,7 @@
 
 ## 冻结的动效
 
-只有开场第二屏覆盖第一屏。只有 fullscreen 模块变暗/变亮；最大暗层 55%，原有 smoothstep 计算不变。新增视频也是 fullscreen，因此居中时为完整亮度；普通模块不变暗。动效独立为 motion.js + styles/motion.css。减少动态效果模式保持原有关闭行为。
+只有开场第二屏覆盖第一屏。只有 fullscreen 模块变暗/变亮；最大暗层 55%，原有 smoothstep 计算不变。新增视频也是 fullscreen，因此居中时为完整亮度；普通模块不变暗。明暗与叠层仍独立为 motion.js + styles/motion.css；逐屏吸附及导航开合独立为 snap.js，不与原动效混写。减少动态效果模式保持原有关闭行为。
 
 ## 每次更新流程
 
