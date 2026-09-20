@@ -1,0 +1,3 @@
+const sharp=require('C:/Users/AdLink-076/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/sharp');
+const names=['hero','identity','classic','categories','video','edit','services','stories','footer'];
+(async()=>{const width=640;const thumbs=[];for(const n of names){const input=`qa-results/new-${n}.png`;const data=await sharp(input).resize({width,height:360,fit:'contain',background:'white'}).jpeg({quality:75}).toBuffer();thumbs.push({input:data,left:(thumbs.length%3)*width,top:Math.floor(thumbs.length/3)*360})}await sharp({create:{width:width*3,height:360*3,channels:3,background:'white'}}).composite(thumbs).jpeg({quality:80}).toFile('qa-results/new-contact-sheet.jpg')})().catch(e=>{console.error(e);process.exit(1)});

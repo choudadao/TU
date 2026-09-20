@@ -1,6 +1,6 @@
 # TU Figma → frontend incremental contract
 
-This site is a visual implementation of Figma 3wOR12HmvYis24oKXRExwg / HOME 22:293, not a redesign.
+This site is a visual implementation of Figma 3wOR12HmvYis24oKXRExwg / HOME 66:580, not a redesign.
 
 1. Read COLLABORATION.md and dist/module-map.js before changes. Fetch current design context for explicitly requested node IDs.
 2. Limit changes to requested modules and their content. Do not regenerate the entire page or replace assets/copy with alternatives.
