@@ -10,3 +10,4 @@
 .site-header.surface .nav-surface{background:rgba(255,255,255,.8);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
 .logo{width:42px;height:40px;background:rgba(255,255,255,.8)}.nav-open .logo{background:rgba(33,37,41,.8)}
 .header-icons .icon:hover{filter:brightness(.35)}.site-header.dark .header-icons .icon:hover,.nav-open .header-icons .icon:hover{filter:brightness(.35)}
+.main-nav,.header-icons{letter-spacing:0}
