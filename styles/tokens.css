@@ -1,4 +1,4 @@
 @font-face{font-family:'Albert Sans';src:url('../assets/albert-sans-regular.ttf') format('truetype');font-style:normal;font-weight:400;font-display:swap}
 @font-face{font-family:'Albert Sans';src:url('../assets/albert-sans-medium.ttf') format('truetype');font-style:normal;font-weight:500;font-display:swap}
 /* Figma HOME 66:580, desktop reference 1920 × 1080. */
-:root{--font-brand:'Albert Sans',Arial,sans-serif;--ink:#212529;--ink-muted:#565b58;--paper:#fff;--ink-alpha:rgba(33,37,41,.8);--line-light:rgba(255,255,255,.4);--weight-regular:400;--weight-title:500;--text-title:20px;--text-link:14px;--tracking:-1px;--space-8:8px;--space-16:16px;--space-24:24px;--space-40:40px;--space-60:60px;--space-80:80px;--page-gutter:60px}
+:root{--font-brand:'Albert Sans',Arial,sans-serif;--ink:#212529;--ink-muted:#565b58;--paper:#fff;--ink-alpha:rgba(33,37,41,.8);--line-light:rgba(255,255,255,.4);--weight-regular:400;--weight-title:500;--text-title:18px;--text-link:14px;--tracking:-1px;--space-8:8px;--space-16:16px;--space-24:24px;--space-40:40px;--space-60:60px;--space-80:80px;--page-gutter:60px}
