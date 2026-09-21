@@ -6,6 +6,7 @@
 @media(max-width:1023px){.logo{position:static;transform:none}}
 @media(max-width:430px){.main-nav{font-size:11px;gap:12px}.header-icons{gap:8px}.header-icons .icon{width:16px;height:16px}}
 .mega-feature>span{display:block;height:48px;padding:16px 0}.mega-feature-image{margin-bottom:0}
-.site-header.dark{color:#212529}.site-header.dark .logo{background:#212529}.site-header.dark .header-icons .icon{filter:brightness(.14)}
+.site-header.dark{color:#212529}.site-header.dark .logo{background:rgba(33,37,41,.8)}.site-header.dark .header-icons .icon{filter:brightness(.14)}
 .site-header.surface .nav-surface{background:rgba(255,255,255,.8);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.logo{width:42px;height:40px;background:rgba(255,255,255,.8)}.nav-open .logo{background:rgba(33,37,41,.8)}
 .header-icons .icon:hover{filter:brightness(.35)}.site-header.dark .header-icons .icon:hover,.nav-open .header-icons .icon:hover{filter:brightness(.35)}
