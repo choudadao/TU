@@ -29,7 +29,10 @@ export function initSnap(){
  navItems.forEach(item=>{item.addEventListener('pointerenter',()=>openNav(item));item.addEventListener('focus',()=>openNav(item))});
  header.addEventListener('pointerleave',closeNav);
  header.addEventListener('keydown',event=>{if(event.key==='Escape'){closeNav();navItems[0]?.focus()}});
- const updateHeader=()=>header.classList.toggle('scrolled',scrollY>24);
+ const updateHeader=()=>{
+   const screen=Math.round(scrollY/innerHeight);
+   header.classList.toggle('dark',screen===3||screen>=5);
+ };
  addEventListener('scroll',updateHeader,{passive:true});
  updateHeader();
  addEventListener('wheel',event=>{
