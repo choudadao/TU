@@ -32,6 +32,7 @@ export function initSnap(){
  const updateHeader=()=>{
    const screen=Math.round(scrollY/innerHeight);
    header.classList.toggle('dark',screen===3||screen>=5);
+   header.classList.toggle('surface',screen>=5);
  };
  addEventListener('scroll',updateHeader,{passive:true});
  updateHeader();
