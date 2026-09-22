@@ -1,8 +1,9 @@
 const {chromium}=require('C:/Users/AdLink-076/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
 const fs=require('fs');const assert=require('assert/strict');
-(async()=>{const b=await chromium.launch({channel:'msedge',headless:true});const p=await b.newPage({viewport:{width:1920,height:1080}});const errors=[];p.on('pageerror',e=>errors.push(e.message));p.on('console',m=>{if(m.type()==='error')errors.push(m.text())});await p.goto('http://localhost:4173');await p.evaluate(()=>document.fonts.ready);await p.waitForTimeout(1200);fs.mkdirSync('qa-results',{recursive:true});
+(async()=>{const b=await chromium.launch({channel:'msedge',headless:true});const p=await b.newPage({viewport:{width:1920,height:1080}});const errors=[];p.on('pageerror',e=>errors.push(e.message));p.on('console',m=>{if(m.type()==='error')errors.push(m.text())});await p.goto(process.env.QA_URL||'http://localhost:4173');await p.evaluate(()=>document.fonts.ready);await p.waitForTimeout(1200);fs.mkdirSync('qa-results',{recursive:true});
 const ids=['hero','identity','classic','categories','video','edit','services','stories','footer'];
 const layout=await p.evaluate(ids=>ids.map(id=>{const e=document.getElementById(id);return {id,node:e.dataset.nodeId,top:e.offsetTop,height:e.offsetHeight}}),ids);
+assert.equal(await p.evaluate(()=>getComputedStyle(document.querySelector('#categories')).backgroundColor),'rgb(255, 255, 255)','fourth screen has an opaque white background');
 assert.deepEqual(layout.slice(0,8).map(x=>x.height),[1080,1080,1080,1080,1080,1080,136,880]);
 const expectedNodes=['66:581','66:619','66:630','66:635','66:652','66:657','66:686','66:714','66:730'];assert.deepEqual(layout.map(x=>x.node),expectedNodes);
 async function shot(id,name=id){await p.locator('#'+id).scrollIntoViewIfNeeded();await p.waitForTimeout(250);await p.locator('#'+id).screenshot({path:`qa-results/new-${name}.png`})}

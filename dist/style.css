@@ -1,8 +1,8 @@
-@import url('styles/tokens.css');
-@import url('styles/base.css');
-@import url('styles/header.css');
-@import url('styles/screens.css');
-@import url('styles/grids.css');
-@import url('styles/services.css');
-@import url('styles/footer.css');
-@import url('styles/motion.css');
+@import url('styles/tokens.css?v=20260922-2');
+@import url('styles/base.css?v=20260922-2');
+@import url('styles/header.css?v=20260922-2');
+@import url('styles/screens.css?v=20260922-2');
+@import url('styles/grids.css?v=20260922-2');
+@import url('styles/services.css?v=20260922-2');
+@import url('styles/footer.css?v=20260922-2');
+@import url('styles/motion.css?v=20260922-2');
