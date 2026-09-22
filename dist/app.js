@@ -9,6 +9,6 @@ function render(m){
  const renderers={hero:()=>renderScreen(m),split:()=>renderScreen(m),campaign:()=>renderScreen(m),video:()=>renderVideo(m),categories:()=>renderGrid(m),products:()=>renderGrid(m),stories:()=>renderGrid(m),services:renderServices,footer:renderFooter};
  return `<section id="${m.id}" data-node-id="${moduleMap[m.id].nodeId}" class="module ${m.layout} ${m.type}" ${m.type==='fullscreen'?'data-fullscreen':''}>${renderers[m.layout]()}${m.type==='fullscreen'?'<div class="shade" aria-hidden="true"></div>':''}</section>`;
 }
-document.querySelector('#app').innerHTML=`${renderHeader()}<div class="opening-stack">${modules.slice(0,2).map(render).join('')}</div>${modules.slice(2).map(render).join('')}`;
+document.querySelector('#app').innerHTML=`${renderHeader()}<div class="opening-stack">${modules.slice(0,5).map(render).join('')}</div>${modules.slice(5).map(render).join('')}`;
 initMotion(motion);
 initSnap();
