@@ -6,11 +6,13 @@
 
 /* Product listing interaction states — Figma 124:22353 */
 .swatch{appearance:none;cursor:pointer}
-.wishlist[aria-pressed="true"]{color:#212529}
-.wishlist[aria-pressed="true"] span{font-size:18px}
+.wishlist{display:grid;place-items:center;padding:15px}
+.wishlist img{display:block;max-width:none}
+.wishlist img[hidden]{display:none}
 .product-loader{position:absolute;inset:0;z-index:5;display:grid;place-items:center;background:#f5f5f3;color:#fff;font-size:72px;letter-spacing:-.08em;opacity:0;pointer-events:none;transition:opacity .16s ease}
 .product-card.is-loading .product-loader{opacity:1}
 .product-card.is-loading .product-primary,.product-card.is-loading .product-detail{opacity:0!important}
 .product-card:has(.product-detail):hover .product-primary,.product-image:has(.product-detail):focus .product-primary{opacity:1}
 .product-detail{pointer-events:none}
+.product-grid.is-first-row .product-card:nth-child(3) .product-primary{inset:auto;left:-3.48%;top:-3.49%;width:106.96%;height:106.99%;max-width:none}
 .size-list button:hover,.size-list button:focus-visible{outline:0;font-weight:500}
