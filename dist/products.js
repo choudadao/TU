@@ -3,31 +3,31 @@ import {renderFooter} from './components/footer.js';
 
 const asset=name=>`assets/listing/${name}`;
 const categories=[
- {key:'dresses',label:'DRESSES',image:'category.jpg'},
- {key:'bottoms',label:'BOTTOMS',image:'category.jpg'},
- {key:'tops',label:'TOPS',image:'category.jpg'}
+ {key:'dresses',label:'DRESSES',image:'category-dresses.png'},
+ {key:'suits',label:'SUITS',image:'category-suits.png'},
+ {key:'knitwear',label:'KNITWEAR',image:'category-knitwear.png'}
 ];
 const products=[
- ['product-01.png','Mile Skirt in Black','£395','NEW IN','detail-01a.jpg'],
- ['figma-product-02.png','Mile Skirt in Black','£395  $202.00','30% OFF'],
- ['figma-product-03.png','Mile Skirt in Black','£395','NEW IN'],
- ['figma-product-04.png','Mile Skirt in Black','£395','NEW IN'],
- ['figma-product-05.png','Mile Skirt in Black','£395','NEW IN'],
- ['figma-product-06.png','Mile Skirt in Black','£395','NEW IN'],
- ['figma-product-07.png','Mile Skirt in Black','£395','NEW IN'],
- ['figma-product-08.png','Mile Skirt in Black','£395','NEW IN'],
- ['figma-product-09.png','Mile Skirt in Black','£395','NEW IN']
+ ['product-new-01.png','Mile Skirt in Black','£395','NEW IN','product-new-01-hover.png'],
+ ['product-new-02.png','Mile Skirt in Black','£395','','product-new-02-hover.png'],
+ ['product-new-03.png','Mile Skirt in Black','£395','NEW IN','product-new-03-hover.png'],
+ ['product-new-04.png','Mile Skirt in Black','£395','NEW IN','product-new-04-hover.png'],
+ ['product-new-05.png','Mile Skirt in Black','£395','NEW IN','product-new-05-hover.png'],
+ ['product-new-06.png','Mile Skirt in Black','£395','NEW IN','product-new-06-hover.png'],
+ ['product-new-07.png','Mile Skirt in Black','£395','NEW IN','product-new-07-hover.png'],
+ ['product-new-08.png','Mile Skirt in Black','£395','NEW IN','product-new-08-hover.png'],
+ ['product-new-09.png','Mile Skirt in Black','£395','NEW IN','product-new-09-hover.png']
 ];
 const query=new URLSearchParams(location.search);
 const category=query.get('category');
 const label=(category||'all products').replaceAll('-',' ').toUpperCase();
 
 const categoryMarkup=category?'':`<section class="listing-shortcuts" aria-label="Shop by category">${categories.map(item=>`<a class="shortcut-card" href="products.html?category=${item.key}"><span class="shortcut-image"><img src="${asset(item.image)}" alt=""></span><span>${item.label}</span></a>`).join('')}</section>`;
-const swatches='<span class="swatch is-active"></span><span class="swatch swatch-brown"></span><span class="swatch swatch-ivory"></span>';
+const swatches='<button class="swatch is-active" type="button" aria-label="Black" aria-pressed="true"></button><button class="swatch swatch-brown" type="button" aria-label="Brown" aria-pressed="false"></button><button class="swatch swatch-ivory" type="button" aria-label="Ivory" aria-pressed="false"></button>';
 const sizes=['2','4','6','8','10','12','14','16','2P','4P','6P','8P','10P'];
-const productCard=(item,index)=>`<article class="product-card"><div class="product-image" tabindex="0" aria-label="${item[1]}"><img class="product-primary" src="${asset(item[0])}" alt="${item[1]}">${item[4]?`<img class="product-detail" src="${asset(item[4])}" alt="Detail of ${item[1]}">`:''}${item[3]?`<span class="product-badge${item[3].includes('%')?' is-sale':''}">${item[3]}</span>`:''}<button class="wishlist" type="button" aria-label="Add ${item[1]} to wishlist">♡</button><div class="quick-add"><button class="quick-add-trigger" type="button">QUICK ADD <span>＋</span></button><div class="size-list" aria-label="Choose a size">${sizes.map((size,i)=>`<button type="button"${i===5||i===7||i===12?' disabled':''}>${size}</button>`).join('')}</div></div></div><div class="product-copy"><h2>${item[1]}</h2><p class="${item[2].includes('$')?'sale-price':''}">${item[2]}</p><div class="swatches" aria-label="Available colours">${swatches}</div></div></article>`;
+const productCard=(item,index)=>`<article class="product-card" data-primary="${asset(item[0])}" data-alternate="${asset(item[4])}"><div class="product-image" tabindex="0" aria-label="${item[1]}"><span class="product-loader" aria-hidden="true">TU</span><img class="product-primary" src="${asset(item[0])}" alt="${item[1]}"><img class="product-detail" src="${asset(item[4])}" alt="Detail of ${item[1]}">${item[3]?`<span class="product-badge">${item[3]}</span>`:''}<button class="wishlist" type="button" aria-label="Add ${item[1]} to wishlist" aria-pressed="false"><span aria-hidden="true">♡</span></button><div class="quick-add"><button class="quick-add-trigger" type="button">QUICK ADD <span>＋</span></button><div class="size-list" aria-label="Choose a size">${sizes.map((size,i)=>`<button type="button"${i===5||i===7||i===12?' disabled':''}>${size}</button>`).join('')}</div></div></div><div class="product-copy"><h2>${item[1]}</h2><p>${item[2]}</p><div class="swatches" aria-label="Available colours">${swatches}</div></div></article>`;
 const campaign=(images,title,split=true)=>`<section class="listing-campaign${split?'':' is-single'}">${images.map((src,index)=>`<div><img src="${asset(src)}" alt="">${index===images.length-1?`<span class="campaign-copy"><strong>${title}</strong><span class="text-link">SHOP THE LOOKS</span></span>`:''}</div>`).join('')}</section>`;
-const social=Array(4).fill('figma-social.png');
+const social=['social-new-01.png','social-new-02.png','social-new-03.png','social-new-04.jpeg'];
 
 document.querySelector('#app').innerHTML=`
  ${renderHeader()}
@@ -35,9 +35,9 @@ document.querySelector('#app').innerHTML=`
   ${categoryMarkup}
   <section class="listing-toolbar" aria-label="Product controls"><button type="button">FILTERS <span>⌄</span></button><p>${label}</p><button type="button">SORT BY: <span>⌄</span></button></section>
   <section class="product-grid">${products.slice(0,3).map(productCard).join('')}</section>
-  ${campaign(['figma-campaign-01.png','figma-campaign-02.png'],'REDEFINING HERITAGE STYLE')}
+  ${campaign(['campaign-new-01.png','campaign-new-02.png'],'REDEFINING HERITAGE STYLE')}
   <section class="product-grid">${products.slice(3).map(productCard).join('')}</section>
-  ${campaign(['figma-campaign-03.png'],'REDEFINING HERITAGE STYLE',false)}
+  ${campaign(['campaign-new-03.png'],'REDEFINING HERITAGE STYLE',false)}
   <div class="load-more"><button type="button">LOAD MORE</button></div>
   <section class="styled-by"><h2>STYLED BY YOU</h2><div>${social.map(src=>`<a href="#" class="social-tile"><img src="${asset(src)}" alt=""><span>LEARN MORE</span></a>`).join('')}</div></section>
  </div>
@@ -64,3 +64,5 @@ const updateBadge=()=>{badge.textContent=unseen||'';badge.hidden=!unseen};update
 document.querySelectorAll('.quick-add-trigger').forEach(button=>button.addEventListener('click',event=>{event.stopPropagation();button.closest('.quick-add').classList.toggle('is-open')}));
 document.querySelectorAll('.size-list button:not(:disabled)').forEach(button=>button.addEventListener('click',()=>{unseen+=1;updateBadge();button.closest('.quick-add').classList.remove('is-open')}));
 cart.addEventListener('click',()=>{unseen=0;updateBadge()});
+document.querySelectorAll('.wishlist').forEach(button=>button.addEventListener('click',event=>{event.stopPropagation();const selected=button.getAttribute('aria-pressed')!=='true';button.setAttribute('aria-pressed',String(selected));button.querySelector('span').textContent=selected?'♥':'♡'}));
+document.querySelectorAll('.swatch').forEach(button=>button.addEventListener('click',()=>{const card=button.closest('.product-card');const image=card.querySelector('.product-primary');const alternate=card.dataset.alternate;card.querySelectorAll('.swatch').forEach(item=>{item.classList.toggle('is-active',item===button);item.setAttribute('aria-pressed',String(item===button))});card.classList.add('is-loading');window.setTimeout(()=>{image.src=button.classList.contains('swatch-brown')?alternate:card.dataset.primary;card.classList.remove('is-loading')},360)}));
