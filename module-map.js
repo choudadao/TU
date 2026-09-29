@@ -4,7 +4,7 @@ export const moduleMap={
  header:{nodeId:'66:582',component:'components/header.js',styles:'styles/header.css'},
  hero:{nodeId:'66:581',component:'components/sections.js:renderScreen',styles:'styles/screens.css'},
  identity:{nodeId:'66:619',component:'components/sections.js:renderScreen',styles:'styles/screens.css'},
- classic:{nodeId:'66:630',component:'components/sections.js:renderScreen',styles:'styles/screens.css'},
+ classic:{nodeId:'136:27325',component:'components/outfit.js:renderOutfit',styles:'styles/outfit.css'},
  categories:{nodeId:'66:635',component:'components/sections.js:renderGrid',styles:'styles/grids.css'},
  video:{nodeId:'66:652',component:'components/sections.js:renderVideo',styles:'styles/screens.css'},
  edit:{nodeId:'66:657',component:'components/sections.js:renderGrid',styles:'styles/grids.css'},

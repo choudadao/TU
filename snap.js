@@ -1,6 +1,8 @@
-export function initSnap(){
+export function initSnap({consumeSectionWheel}={}){
  const sections=[...document.querySelectorAll('.module')];
- const snapSections=sections.slice(0,6);
+ const serviceIndex=sections.findIndex(section=>section.id==='services');
+ const snapSections=sections.slice(0,serviceIndex);
+ const exitSection=sections[serviceIndex];
  const header=document.querySelector('.site-header');
  const navItems=[...document.querySelectorAll('.nav-item')];
  const mega=document.querySelector('.mega-menu');
@@ -8,6 +10,13 @@ export function initSnap(){
  let locked=false;
  let activeDirection=0;
  let animationToken=0;
+ let targets=[];
+ const measureTargets=()=>{
+   let top=0;
+   targets=snapSections.map(section=>{const anchor=top;top+=section.offsetHeight;return anchor});
+   targets.push(top);
+ };
+ measureTargets();
  const easeOutQuart=t=>1-Math.pow(1-t,4);
  const animateTo=(target,token,duration=920)=>{
    if(reduce.matches){scrollTo(0,target);return Promise.resolve()}
@@ -30,28 +39,30 @@ export function initSnap(){
  header.addEventListener('pointerleave',closeNav);
  header.addEventListener('keydown',event=>{if(event.key==='Escape'){closeNav();navItems[0]?.focus()}});
  const updateHeader=()=>{
-   const screen=Math.round(scrollY/innerHeight);
-   header.classList.toggle('dark',screen===3||screen>=5);
+   const screen=targets.reduce((best,top,i)=>Math.abs(top-scrollY)<Math.abs(targets[best]-scrollY)?i:best,0);
+   const current=sections[Math.min(screen,sections.length-1)];
+   header.classList.toggle('dark',current.id==='classic'||current.id==='categories'||screen>=5);
    header.classList.toggle('surface',screen>=5);
  };
+ addEventListener('resize',()=>{measureTargets();updateHeader()},{passive:true});
  addEventListener('scroll',updateHeader,{passive:true});
  updateHeader();
  addEventListener('wheel',event=>{
    if(Math.abs(event.deltaY)<8||event.ctrlKey)return;
    const direction=event.deltaY>0?1:-1;
    if(locked&&direction===activeDirection){event.preventDefault();return}
-   const snapTops=snapSections.map((_,index)=>index*innerHeight);
-   const sixthTop=snapTops[5];
-   const belowSnapRange=scrollY>sixthTop+2;
+   const serviceTop=targets[serviceIndex];
+   const belowSnapRange=scrollY>serviceTop+2;
    if(belowSnapRange)return;
-   const index=snapTops.reduce((best,top,i)=>Math.abs(top-scrollY)<Math.abs(snapTops[best]-scrollY)?i:best,0);
-   if(index===5&&event.deltaY>0)return;
-   const next=Math.max(0,Math.min(5,index+direction));
+   const index=targets.reduce((best,top,i)=>Math.abs(top-scrollY)<Math.abs(targets[best]-scrollY)?i:best,0);
+   if(index<serviceIndex&&consumeSectionWheel?.(snapSections[index],direction)){event.preventDefault();return}
+   if(index===serviceIndex&&direction>0)return;
+   const next=Math.max(0,Math.min(serviceIndex,index+direction));
    if(next===index)return;
    event.preventDefault();
    locked=true;
    activeDirection=direction;
    const token=++animationToken;
-   animateTo(snapTops[next],token).finally(()=>{if(token===animationToken){locked=false;activeDirection=0}});
+   animateTo(targets[next],token).finally(()=>{if(token===animationToken){locked=false;activeDirection=0}});
  },{passive:false});
 }
