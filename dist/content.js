@@ -5,7 +5,7 @@ export const modules = [
  { id:'identity', type:'fullscreen', layout:'split', panels:[
    {image:'assets/material.png',title:'Material & Form',link:'EXPLORE'},
    {image:'assets/women.png',title:'The TU Perspective',link:'OUR PHILOSOPHY'}]},
- { id:'classic', type:'fullscreen', layout:'campaign', image:'assets/classic.png', title:'TU CLASSIC',link:'DISCOVER THE ICONS' },
+ { id:'classic', type:'standard', layout:'outfit' },
  { id:'categories', type:'standard', layout:'categories', items:[
    {image:'assets/city.png',title:'City & Work'},
    {image:'assets/everyday.png',title:'Everyday Ease'},
