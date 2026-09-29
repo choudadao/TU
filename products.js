@@ -26,7 +26,7 @@ const categoryMarkup=category?'':`<section class="listing-shortcuts" aria-label=
 const swatches='<button class="swatch is-active" type="button" aria-label="Black" aria-pressed="true"></button><button class="swatch swatch-brown" type="button" aria-label="Brown" aria-pressed="false"></button><button class="swatch swatch-ivory" type="button" aria-label="Ivory" aria-pressed="false"></button>';
 const sizes=['2','4','6','8','10','12','14','16','2P','4P','6P','8P','10P'];
 const productCard=(item,index)=>`<article class="product-card${item[4]?' has-detail':''}" data-primary="${asset(item[0])}"${item[4]?` data-alternate="${asset(item[4])}"`:''}><div class="product-image" tabindex="0" aria-label="${item[1]}"><span class="product-loader" aria-hidden="true"><span class="loading-logo"></span></span><img class="product-primary" src="${asset(item[0])}" alt="${item[1]}">${item[4]?`<img class="product-detail" src="${asset(item[4])}" alt="Detail of ${item[1]}">`:''}${item[3]?`<span class="product-badge">${item[3]}</span>`:''}<button class="wishlist" type="button" aria-label="Add ${item[1]} to wishlist" aria-pressed="false"><img class="wishlist-default" src="${asset('wishlist-default.svg')}" alt=""><img class="wishlist-active" src="${asset('wishlist-active.svg')}" alt="" hidden></button><div class="quick-add"><button class="quick-add-trigger" type="button">QUICK ADD <span>＋</span></button><div class="size-list" aria-label="Choose a size">${sizes.map((size,i)=>`<button type="button"${i===5||i===7||i===12?' disabled':''}>${size}</button>`).join('')}</div></div></div><div class="product-copy"><h2>${item[1]}</h2><p>${item[2]}</p><div class="swatches" aria-label="Available colours">${swatches}</div></div></article>`;
-const campaign=(images,title,split=true)=>`<section class="listing-campaign${split?'':' is-single'}">${images.map(src=>`<div>${Array.isArray(src)?src.map((layer,i)=>`<img class="campaign-layer campaign-layer-${i+1}" src="${asset(layer)}" alt="">`).join(''):`<img src="${asset(src)}" alt="">`}<span class="campaign-copy"><strong>${title}</strong><span class="text-link">SHOP THE LOOKS</span></span></div>`).join('')}</section>`;
+const campaign=(images,title,split=true,className='')=>`<section class="listing-campaign${split?'':' is-single'}${className?` ${className}`:''}">${images.map(src=>`<div><img src="${asset(src)}" alt=""><span class="campaign-copy"><strong>${title}</strong><span class="text-link">SHOP THE LOOKS</span></span></div>`).join('')}</section>`;
 const social=['styled-exact-01.png','styled-exact-02.png','styled-exact-03.png','styled-exact-04.png'];
 
 document.querySelector('#app').innerHTML=`
@@ -35,7 +35,7 @@ document.querySelector('#app').innerHTML=`
   ${categoryMarkup}
   <section class="listing-toolbar" aria-label="Product controls"><button type="button">FILTERS <span>⌄</span></button><p>${label}</p><button type="button">SORT BY: <span>⌄</span></button></section>
   <section class="product-grid is-first-row">${products.slice(0,3).map(productCard).join('')}</section>
-  ${campaign(['campaign-exact-left.png',['campaign-exact-right-base.png','campaign-exact-right-overlay.png']],'REDEFINING HERITAGE STYLE')}
+  ${campaign(['campaign-left-raw-1.png','campaign-right-raw-1.png'],'REDEFINING HERITAGE STYLE',true,'is-heritage')}
   <section class="product-grid">${products.slice(3).map(productCard).join('')}</section>
   ${campaign(['campaign-new-03.png'],'REDEFINING HERITAGE STYLE',false)}
   <div class="load-more"><button type="button">LOAD MORE</button></div>
