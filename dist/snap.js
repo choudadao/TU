@@ -53,12 +53,13 @@ export function initSnap({consumeSectionWheel}={}){
    if(Math.abs(event.deltaY)<8||event.ctrlKey)return;
    const direction=event.deltaY>0?1:-1;
    if(locked&&direction===activeDirection){event.preventDefault();return}
-   const serviceTop=targets[serviceIndex];
-   const belowSnapRange=scrollY>serviceTop+2;
+   const lastSnapIndex=snapSections.length-1;
+   const lastSnapTop=targets[lastSnapIndex];
+   const belowSnapRange=scrollY>lastSnapTop+2;
    if(belowSnapRange)return;
    const index=targets.reduce((best,top,i)=>Math.abs(top-scrollY)<Math.abs(targets[best]-scrollY)?i:best,0);
    if(index<serviceIndex&&consumeSectionWheel?.(snapSections[index],direction)){event.preventDefault();return}
-   if(index===serviceIndex&&direction>0)return;
+   if(index===lastSnapIndex&&direction>0)return;
    const next=Math.max(0,Math.min(serviceIndex,index+direction));
    if(next===index)return;
    event.preventDefault();
