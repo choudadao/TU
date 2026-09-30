@@ -22,6 +22,18 @@ const query=new URLSearchParams(location.search);
 const category=query.get('category');
 const label=(category||'all products').replaceAll('-',' ').toUpperCase();
 
+const filterGroups=[
+ {title:'CATEGORY',items:['DRESSES','JEANS','KNITWEAR','TOPS & BLOUSES']},
+ {title:'SIZE',items:['S','M','M/L','L','XL','32','34','40']},
+ {title:'MATERIAL',items:['ALPACA','COTTON','LINEN','MOHAIR','SATIN','SILK','VISCOSE','LEATHER','RAMIE','SHEARLING','WOOL']},
+ {title:'COLOR',colors:{BEIGE:'#f5f5dc',BLACK:'#000000',BLUE:'#4343a8',BROWN:'#964b00',GREEN:'#008000',GREY:'#ababab',MULTICOLOR:'conic-gradient(#d7aa77,#718d9b,#9a7b99,#d7aa77)',PINK:'#e68989',PURPLE:'#800080',RED:'#dd1d1d',SILVER:'#c0c0c0',WHITE:'#ffffff',YELLOW:'#ffd000'},items:['BEIGE','BLACK','BLUE','BROWN','GREEN','GREY','MULTICOLOR','PINK','PURPLE','RED','SILVER','WHITE','YELLOW']},
+ {title:'STYLE',items:['ANKLE BOOTS','STYLE2','STYLE3','STYLE4']}
+];
+const filterPanel=`<section class="filter-panel" id="product-filters" aria-hidden="true">
+ <div class="filter-groups">${filterGroups.map(group=>`<fieldset class="filter-group"><legend>${group.title}</legend>${group.items.map(item=>`<label class="filter-option"><input type="checkbox" value="${item}"><span class="filter-mark"${group.colors?` style="--filter-color:${group.colors[item]}"`:''}></span><span>${item}</span></label>`).join('')}</fieldset>`).join('')}</div>
+ <div class="filter-actions"><button class="filter-remove" type="button" disabled>REMOVE ALL</button><button class="filter-apply" type="button">APPLY <span>(239)</span></button></div>
+</section>`;
+
 const categoryMarkup=category?'':`<section class="listing-shortcuts" aria-label="Shop by category">${categories.map(item=>`<a class="shortcut-card" href="products.html?category=${item.key}"><span class="shortcut-image"><img src="${asset(item.image)}" alt=""></span><span>${item.label}</span></a>`).join('')}</section>`;
 const swatches='<button class="swatch is-active" type="button" aria-label="Black" aria-pressed="true"></button><button class="swatch swatch-brown" type="button" aria-label="Brown" aria-pressed="false"></button><button class="swatch swatch-ivory" type="button" aria-label="Ivory" aria-pressed="false"></button>';
 const sizes=['2','4','6','8','10','12','14','16','2P','4P','6P','8P','10P'];
@@ -33,7 +45,8 @@ document.querySelector('#app').innerHTML=`
  ${renderHeader()}
  <div class="listing-shell" data-category="${category||'all'}">
   ${categoryMarkup}
-  <section class="listing-toolbar" aria-label="Product controls"><button type="button">FILTERS <span>⌄</span></button><p>${label}</p><button type="button">SORT BY: <span>⌄</span></button></section>
+  <section class="listing-toolbar" aria-label="Product controls"><button class="filter-toggle" type="button" aria-expanded="false" aria-controls="product-filters">FILTERS <span class="filter-chevron"><img src="assets/filter-chevron.svg" alt=""></span></button><p>${label}</p><button class="sort-toggle" type="button">SORT BY: <span class="filter-chevron"><img src="assets/filter-chevron.svg" alt=""></span></button></section>
+  ${filterPanel}
   <section class="product-grid is-first-row">${products.slice(0,3).map(productCard).join('')}</section>
   ${campaign(['campaign-left-raw-1.png','campaign-right-raw-1.png'],'REDEFINING HERITAGE STYLE',true,'is-heritage')}
   <section class="product-grid">${products.slice(3).map(productCard).join('')}</section>
@@ -57,6 +70,26 @@ navItems.forEach(item=>{item.addEventListener('mouseenter',()=>open(item));item.
 header.addEventListener('mouseleave',close);
 document.addEventListener('keydown',event=>{if(event.key==='Escape')close()});
 document.querySelectorAll('a[href="#"]').forEach(link=>link.addEventListener('click',event=>event.preventDefault()));
+const filterToggle=document.querySelector('.filter-toggle');
+const filterPanelNode=document.querySelector('.filter-panel');
+const filterInputs=[...filterPanelNode.querySelectorAll('input')];
+const removeFilters=filterPanelNode.querySelector('.filter-remove');
+const applyFilters=filterPanelNode.querySelector('.filter-apply');
+const syncFilters=()=>{
+ const count=filterInputs.filter(input=>input.checked).length;
+ removeFilters.disabled=count===0;
+ applyFilters.querySelector('span').textContent=`(${count?59:239})`;
+};
+filterToggle.addEventListener('click',()=>{
+ const open=filterToggle.getAttribute('aria-expanded')!=='true';
+ filterToggle.setAttribute('aria-expanded',String(open));
+ filterPanelNode.setAttribute('aria-hidden',String(!open));
+ filterPanelNode.classList.toggle('is-open',open);
+});
+filterInputs.forEach(input=>input.addEventListener('change',syncFilters));
+removeFilters.addEventListener('click',()=>{filterInputs.forEach(input=>{input.checked=false});syncFilters()});
+applyFilters.addEventListener('click',()=>{filterToggle.setAttribute('aria-expanded','false');filterPanelNode.setAttribute('aria-hidden','true');filterPanelNode.classList.remove('is-open')});
+syncFilters();
 let unseen=0;
 const cart=document.querySelector('.header-icons .icon:last-child');
 const badge=document.createElement('span');badge.className='cart-badge';cart.append(badge);
