@@ -1,3 +1,4 @@
+import {renderProductCard} from './product-card.js';
 const base='assets/outfits/';
 const sets=[
  {key:'black',hero:'current/05.jpg',products:[
@@ -12,7 +13,7 @@ const sets=[
   ['outfit-base-09.png','outfit-white-hover-08.jpg','Mile Skirt in Black','£395','cell-d']
  ]}
 ];
-const card=([image,hover,title,price,cell])=>`<article class="outfit-card ${cell}"><div class="outfit-card-image"><img class="outfit-product-base" src="${base+image}" alt="${title}"><img class="outfit-product-hover" src="${base+hover}" alt=""><img class="outfit-wishlist" src="assets/listing/wishlist-default.svg" alt=""></div><div class="outfit-product-copy"><h2>${title}</h2><p>${price}</p></div></article>`;
+const card=([image,hover,title,price,cell])=>renderProductCard({image:base+image,hover:base+hover,title,price,cell,className:'outfit-card'});
 export function renderOutfit(){return `<div class="outfit-stage" data-state="0"><div class="outfit-hero"><div class="outfit-hero-track">${sets.map(set=>`<figure><img src="${base+set.hero}" alt=""></figure>`).join('')}</div></div><div class="outfit-groups">${sets.map((set,index)=>`<div class="outfit-grid outfit-grid-${set.key}${index===0?' is-active':''}" aria-hidden="${index!==0}">${set.products.map(card).join('')}</div>`).join('')}</div></div>`}
 export function initOutfit(){
  const root=document.querySelector('#classic .outfit-stage');
