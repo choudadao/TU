@@ -3,19 +3,19 @@ import {renderProductCard} from './product-card.js';
 const base='assets/outfits/';
 const sets={
  white:{hero:'new-white/01.jpeg',products:[
-  ['new-white/04.png','new-white/06.png','Mile Skirt in Black','£395'],
-  ['new-white/08.png','new-white/05.png','Mile Skirt in Black','£395'],
-  ['new-white/15.png','new-white/12.png','Mile Skirt in Black','£395'],
-  ['new-white/10.png','new-white/13.png','Mile Skirt in Black','£395']
+  ['new-white/04.png','outfit-white-hover-01.jpg','Mile Skirt in Black','£395','cell-a'],
+  ['new-white/08.png','outfit-white-hover-05.jpg','Mile Skirt in Black','£395','cell-b'],
+  ['new-white/15.png','outfit-white-hover-06.jpg','Mile Skirt in Black','£395','cell-c'],
+  ['new-white/10.png','outfit-white-hover-08.jpg','Mile Skirt in Black','£395','cell-d']
  ]},
- black:{hero:'new-white/02.jpeg',products:[
-  ['current/01.png','outfit-black-hover-01.jpg','Mile Skirt in Black','£395'],
-  ['current/07.png','outfit-black-hover-03.jpg','Mile Skirt in Black','£395'],
-  ['current/04.png','outfit-black-hover-04.jpg','Mile Skirt in Black','£395']
+ black:{hero:'new-black/01.jpeg',products:[
+  ['new-black/03.png','outfit-black-hover-01.jpg','Mile Skirt in Black','£395','cell-a'],
+  ['new-black/05.png','outfit-black-hover-03.jpg','Mile Skirt in Black','£395','cell-b'],
+  ['new-black/06.png','outfit-black-hover-04.jpg','Mile Skirt in Black','£395','cell-d']
  ]}
 };
 
-const card=([image,hover,title,price])=>renderProductCard({image:base+image,hover:base+hover,title,price,className:'outfit-card'});
+const card=([image,hover,title,price,cell])=>renderProductCard({image:base+image,hover:base+hover,title,price,className:`outfit-card ${cell||''}`});
 
 export function renderOutfit(module){
  const set=sets[module.variant]||sets.white;

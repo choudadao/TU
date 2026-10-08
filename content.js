@@ -23,6 +23,9 @@ export const modules = [
    {image:'assets/dresses.png',title:'DRESSES'}, {image:'assets/coats.png',title:'COATS'}] },
  { id:'promotion', type:'fullscreen', layout:'promotion', image:'assets/home-v2/promo-01.png', eyebrow:'ENDS TONIGHT', title:'20% OFF EVERYTHING', subtitle:'IN OUR NEW SEASON COLLECTION', link:'SHOP NOW' },
  { id:'services', type:'standard', layout:'services' },
+ { id:'social', type:'standard', layout:'social', title:'TU BY YOU', items:[
+   {image:'assets/social/03.png'}, {image:'assets/social/04.png'},
+   {image:'assets/social/09.png'}, {image:'assets/social/10.png'}] },
  { id:'stories', type:'standard', layout:'stories', items:[
    {image:'assets/story-one.png',title:'TU SPACES',link:'FIND US'},
    {image:'assets/story-two.png',title:'A Sense of Place',link:'READ MORE'},
