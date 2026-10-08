@@ -41,7 +41,7 @@ export function initSnap({consumeSectionWheel}={}){
  const updateHeader=()=>{
    const screen=targets.reduce((best,top,i)=>Math.abs(top-scrollY)<Math.abs(targets[best]-scrollY)?i:best,0);
    const current=sections[Math.min(screen,sections.length-1)];
-   const darkIds=['classic','categories','bestsellers','edit','services','stories','footer'];
+   const darkIds=['categories','bestsellers','edit','services','stories','footer'];
    const surfaceIds=['bestsellers','edit','services','stories','footer'];
    header.classList.toggle('dark',darkIds.includes(current.id));
    header.classList.toggle('surface',surfaceIds.includes(current.id));

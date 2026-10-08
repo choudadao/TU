@@ -5,3 +5,4 @@
 #categories{background:#fff;isolation:isolate}
 .categories{padding:160px 0 120px}.products{padding-top:160px;padding-bottom:120px}
 @media(max-width:1023px){.categories{padding:140px 0 72px}.products{padding-top:140px;padding-bottom:72px}}
+#stories{display:block;min-height:620px;background:#fff;isolation:isolate;z-index:1}

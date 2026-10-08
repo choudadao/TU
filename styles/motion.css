@@ -2,3 +2,5 @@
 .opening-stack{position:relative}.opening-stack>.module{position:sticky;top:0}.opening-stack>.module:nth-child(1){z-index:1}.opening-stack>.module:nth-child(2){z-index:2}.opening-stack>.module:nth-child(3){z-index:3}.opening-stack>.module:nth-child(4){z-index:4}.opening-stack>.module:nth-child(5){z-index:5}.shade{position:absolute;inset:0;background:#000;opacity:var(--dim,0);pointer-events:none;z-index:4;will-change:opacity}
 #hero,#identity,#classic,#classicFeature,#categories,#video,#bestsellers,#edit,#promotion{height:100svh;min-height:0;max-height:100svh;overflow:hidden}
 @media(prefers-reduced-motion:reduce){.opening-stack>.module{position:relative}.shade{opacity:0!important;will-change:auto}}
+.opening-stack>.module:nth-child(6){z-index:6}
+#outfitWhite,#outfitBlack{height:100svh;min-height:0;max-height:100svh;overflow:hidden}
