@@ -7,9 +7,10 @@ import {initMotion} from './motion.js';
 import {initSnap} from './snap.js';
 import {moduleMap} from './module-map.js';
 function render(m){
- const renderers={hero:()=>renderScreen(m),split:()=>renderScreen(m),campaign:()=>renderScreen(m),outfit:renderOutfit,video:()=>renderVideo(m),categories:()=>renderGrid(m),products:()=>renderGrid(m),bestsellers:()=>renderBestsellers(m),promotion:()=>renderPromotion(m),stories:()=>renderGrid(m),services:renderServices,footer:renderFooter};
+ const renderers={hero:()=>renderScreen(m),split:()=>renderScreen(m),campaign:()=>renderScreen(m),outfit:()=>renderOutfit(m),video:()=>renderVideo(m),categories:()=>renderGrid(m),products:()=>renderGrid(m),bestsellers:()=>renderBestsellers(m),promotion:()=>renderPromotion(m),stories:()=>renderGrid(m),services:renderServices,footer:renderFooter};
  return `<section id="${m.id}" data-node-id="${moduleMap[m.id].nodeId}" class="module ${m.layout} ${m.type}" ${m.type==='fullscreen'?'data-fullscreen':''}>${renderers[m.layout]()}${m.type==='fullscreen'?'<div class="shade" aria-hidden="true"></div>':''}</section>`;
 }
-document.querySelector('#app').innerHTML=`${renderHeader()}<div class="opening-stack">${modules.slice(0,5).map(render).join('')}</div>${modules.slice(5).map(render).join('')}`;
+const openingEnd=modules.findIndex(module=>module.id==='video');
+document.querySelector('#app').innerHTML=`${renderHeader()}<div class="opening-stack">${modules.slice(0,openingEnd).map(render).join('')}</div>${modules.slice(openingEnd).map(render).join('')}`;
 initMotion(motion);
 initSnap({consumeSectionWheel:initOutfit()});
