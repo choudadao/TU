@@ -19,14 +19,14 @@ html{scrollbar-width:none}html::-webkit-scrollbar,body::-webkit-scrollbar{displa
 .home-page [data-node-id="2006:4582"],.home-page [data-node-id="2008:6132"]{overflow-y:auto;overscroll-behavior:contain;scrollbar-width:none;flex-shrink:0}
 .home-page [data-node-id="2006:4582"]{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));background:none!important;background-image:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;overflow:hidden}
 .home-page [data-node-id="2008:6132"]{overflow:hidden;min-width:0;z-index:1}
-.home-page [data-node-id="2006:4582"] .outfit-hover [data-name="Link"]{background:transparent!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;align-items:center;text-align:center}
+.home-page [data-node-id="2006:4582"] .outfit-hover [data-name="Link"]{background:rgba(255,255,255,.2)!important;backdrop-filter:blur(10px)!important;-webkit-backdrop-filter:blur(10px)!important;align-items:center;text-align:center}
 .home-page [data-node-id="2006:4582"] .outfit-hover [data-name="Link"] p{width:100%;text-align:center;white-space:normal}
 .home-page [data-node-id="2006:4582"] .outfit-hover [data-name="Definition List"]{width:100%;justify-content:center}
 .home-page [data-node-id="2008:6132"] .outfit-hover{bottom:auto;aspect-ratio:554.984375/739.828125;overflow:hidden}
-.home-page [data-node-id="2006:4576"]>div:first-child img{height:auto}.home-page [data-node-id="2008:6127"]>div>img{height:auto;aspect-ratio:960/1362.312}
+.home-page [data-node-id="2006:4576"]>div:first-child img{width:100%;height:118.53%;top:-5.79%;object-fit:cover}.home-page [data-node-id="2008:6127"]>div>img{height:auto;aspect-ratio:960/1362.312}
 .home-page [data-name="Call to Action Container"][class*="border-b"],.home-page [data-node-id="66:714"] [data-name="Button Container"]{color:#fff}.home-page [data-node-id="66:657"] [data-name="Button Container"],.home-page [data-node-id="2003:3928"] [data-name="Button Container"]{color:#212529}
 .outfit-card{position:relative;cursor:pointer;aspect-ratio:3/4}.outfit-hover{position:absolute;inset:0;opacity:0;transition:opacity .25s ease;pointer-events:none;display:flex;flex-direction:column}.outfit-hover>div{width:100%;height:100%;min-height:0}.outfit-card:hover>.outfit-hover,.outfit-card:focus-visible>.outfit-hover{opacity:1}
-.home-page [data-node-id="2006:4582"] .outfit-hover [data-name="Link"]{align-items:center!important;text-align:center;background:transparent!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+.home-page [data-node-id="2006:4582"] .outfit-hover [data-name="Link"]{align-items:center!important;text-align:center;background:rgba(255,255,255,.2)!important;backdrop-filter:blur(10px)!important;-webkit-backdrop-filter:blur(10px)!important}
 .home-page [data-node-id="2006:4582"] .outfit-hover [data-name="Link"] p{width:100%;text-align:center}
 .home-page [data-node-id="2008:6132"] .outfit-hover [data-name="Link"]{display:none!important}
 .home-page [data-node-id="2006:4582"]>.outfit-card{width:min(100%,calc((100vh - 252px)*.375));min-width:0;height:calc((100vh - 252px)/2);justify-self:end}.home-page [data-node-id="2008:6132"]>.outfit-card{width:min(360px,calc((100% - 40px)/2),calc((100vh - 279px)*.75));min-width:0;height:auto;aspect-ratio:auto}
