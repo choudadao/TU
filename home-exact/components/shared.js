@@ -1,4 +1,6 @@
 export const image=(src,alt='',eager=false)=>`<img src="${src}" alt="${alt}" ${eager?'fetchpriority="high"':'loading="lazy"'} decoding="async">`;
 export const imageStack=(m,alt='',eager=false)=>m.layers?`<div class="image-stack" aria-hidden="true">${m.layers.map(src=>image(src,'',eager)).join('')}</div>`:image(m.image,alt,eager);
 export const caption=m=>m.captionStyle==='arrow'?`<div class="caption caption-arrow"><div class="caption-copy"><h2>${m.title}</h2><span class="text-link"><span>${m.link||'DISCOVER'}</span></span></div><span class="down-arrow"><img src="assets/down-arrow.svg" alt=""></span></div>`:`<div class="caption"><h2>${m.title}</h2><span class="text-link"><span>${m.link||'DISCOVER'}</span></span></div>`;
-export const icon=(name,label,className='')=>`<span class="icon ${className}" ${label?`role="img" aria-label="${label}"`:'aria-hidden="true"'}>${image(`assets/${name}.svg`)}</span>`;
+// Same original Figma SVGs as src/design/Header.tsx, light-surface mode.
+const headerIcons={'globe-new':'accd6032-6878-46b7-8ac3-e3a9fe447ad9','search-new':'d7611261-a974-4983-8009-a7b7f1bf8d92','cart-new':'5e1c55dc-e525-4a5f-9784-fbf7b4a8f7ef'};
+export const icon=(name,label,className='')=>`<span class="icon ${className}" ${label?`role="img" aria-label="${label}"`:'aria-hidden="true"'}>${image(`assets/${headerIcons[name]||name}.svg`,'',Boolean(headerIcons[name]))}</span>`;

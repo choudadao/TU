@@ -1,4 +1,4 @@
-import {icon} from './shared.js';
+import {icon} from './shared.js?v=plp-v3';
 const columns=[
  ['Shop By Category','Shop All','Coats','Jackets & Blazers','Knitwear','Tops & Blouses','Skirts','Suits & Tailoring','View All','Sale'],
  ['Shop By Fabric','Silk & Satin','Cashmere','Leather & Suede','Shearling','Cotton','Linen'],
