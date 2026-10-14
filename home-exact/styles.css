@@ -56,7 +56,10 @@ html{scrollbar-width:none}html::-webkit-scrollbar,body::-webkit-scrollbar{displa
 :focus-visible{outline:1px solid currentColor;outline-offset:4px}
 .home-page [data-node-id="75:2911"]{cursor:pointer}
 @media(max-height:1079px){.home-page [data-node-id="66:635"]{padding-top:160px;padding-bottom:120px}.home-page [data-node-id="66:635"]>[data-name="Category Container"]{height:100%}.home-page [data-node-id="66:635"]>[data-name="Category Container"]>div:first-child{flex:1;aspect-ratio:auto}.home-page [data-node-id="2003:3928"],.home-page [data-node-id="66:657"]{padding-top:160px;padding-bottom:120px}.bestseller-track{height:calc(100vh - 280px - 84.5px)}.bestseller-track>div{height:calc(100vh - 280px - 130.5px);width:calc((100vh - 280px - 130.5px - 83px)*.75);min-width:0}.home-page [data-node-id="2006:4582"]{padding-top:160px}.home-page [data-node-id="2008:6132"]>.outfit-card{width:min(360px,calc((100% - 40px)/2),calc((100vh - 279px)*.75));min-width:0;height:auto;aspect-ratio:auto}}
-.home-page [data-node-id="66:686"]{padding-top:160px}
+.home-page [data-node-id="66:686"]{padding-top:160px;scroll-margin-top:157px}
+.modal [data-node-id$=";116:19519"]{height:auto;aspect-ratio:554.984375/739.828125;min-height:0}
+.modal>div>div:nth-child(2){overflow-x:hidden}
+.modal [data-name="Definition List"] p{white-space:normal;text-align:center}
 .home-page [data-node-id="2025:8618"]{background:#212529;transition:background-color .2s ease,color .2s ease}
 .home-page [data-node-id="2025:8618"]>div{color:white;transition:color .2s ease}
 .home-page [data-node-id="2025:8618"]:is(:hover,:focus-visible){background:rgba(255,255,255,.8)}
