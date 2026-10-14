@@ -19473,6 +19473,35 @@ function designStyle(classes = "") {
   return s;
 }
 var suppressed = /* @__PURE__ */ new Set(["66:582", "2060:13605", "2060:13786", "2074:3646"]);
+function useNearViewport(rootMargin = "100% 0px") {
+  const ref = import_react.default.useRef(null);
+  const [near, setNear] = import_react.default.useState(false);
+  import_react.default.useEffect(() => {
+    const node = ref.current;
+    if (!node) return;
+    if (!("IntersectionObserver" in window)) {
+      setNear(true);
+      return;
+    }
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setNear(true);
+        observer.disconnect();
+      }
+    }, { rootMargin });
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [rootMargin]);
+  return [ref, near];
+}
+function DeferredImage({ src, ...props2 }) {
+  const [ref, near] = useNearViewport();
+  return import_react.default.createElement("img", { ...props2, ref, src: near ? src : void 0, "data-src": near ? void 0 : src, loading: "lazy", decoding: "async" });
+}
+function DeferredVideo({ src, ...props2 }) {
+  const [ref, near] = useNearViewport("50% 0px");
+  return import_react.default.createElement("video", { ...props2, ref, src: near ? src : void 0, preload: "none" });
+}
 function designElement(tag, props2, ...children) {
   props2 = { ...props2 || {} };
   const id = props2["data-node-id"];
@@ -19482,12 +19511,17 @@ function designElement(tag, props2, ...children) {
   if (props2.className) {
     props2.style = { ...designStyle(props2.className), ...props2.style };
   }
+  if (tag === "img") {
+    props2.loading = props2.loading || "lazy";
+    props2.decoding = props2.decoding || "async";
+  }
   for (const k of Object.keys(props2)) if (k.includes("annotations")) delete props2[k];
-  if (id === "66:652") children = [import_react.default.createElement("video", { key: "video", src: "./assets/tu-landscape.mp4", poster: "./assets/9b19eb15-1231-491f-9e9b-ecb1081c8f7a.webp", muted: true, loop: true, playsInline: true, autoPlay: true, preload: "metadata", className: "home-video" }), ...children.slice(1)];
+  if (id === "66:652") children = [import_react.default.createElement(DeferredVideo, { key: "video", src: "./assets/tu-landscape.mp4", poster: "./assets/9b19eb15-1231-491f-9e9b-ecb1081c8f7a.webp", muted: true, loop: true, playsInline: true, autoPlay: true, className: "home-video" }), ...children.slice(1)];
   if (id === "2003:3933" && registry.Carousel) return import_react.default.createElement(registry.Carousel, props2, ...children);
   if (id === "2074:3744" && registry.ProductTabs) return import_react.default.createElement(registry.ProductTabs, {}, ...children);
   if (["Product Card", "List Item/Default"].includes(props2["data-name"]) && registry.ProductCard) return import_react.default.createElement(registry.ProductCard, props2, ...children);
   if (["66:730", "2060:13857", "2074:3786"].includes(id) && registry.Footer) return import_react.default.createElement(registry.Footer);
+  if (tag === "img") return import_react.default.createElement(DeferredImage, props2, ...children);
   return import_react.default.createElement(tag, props2, ...children);
 }
 
