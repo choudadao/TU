@@ -1,0 +1,41 @@
+.soft-countdown {
+  --countdown-size: clamp(46px, 9.375vw, 180px);
+  --countdown-gap: clamp(16px, 6vw, 115px);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: var(--countdown-gap);
+  color: inherit;
+  font-family: inherit;
+  font-weight: 400;
+}
+.soft-countdown__unit { text-align: center; min-width: 0; }
+.soft-countdown__digits {
+  display: flex;
+  justify-content: center;
+  font-size: var(--countdown-size);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.soft-countdown__digit {
+  display: block;
+  position: relative;
+  width: .58em;
+  height: 1.15em;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(transparent, #000 23%, #000 77%, transparent);
+  mask-image: linear-gradient(transparent, #000 23%, #000 77%, transparent);
+}
+.soft-countdown__glyph {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.soft-countdown__label {
+  margin-top: 8px;
+  font-size: clamp(11px, 1.25vw, 24px);
+  line-height: 1.33;
+  letter-spacing: -.02em;
+}
