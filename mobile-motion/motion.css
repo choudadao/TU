@@ -13,3 +13,5 @@ html,body,#root{width:100%;height:100%;overflow:hidden;font-family:Jost,sans-ser
 .page [data-node-id="4339:15669"]{width:100%;max-width:100%;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;scrollbar-width:none;touch-action:pan-x pan-y}
 .page [data-node-id="4339:15669"]::-webkit-scrollbar{display:none}
 .page [data-node-id="4339:15669"]>[data-name="Category Image"]{flex:0 0 100%;width:100%;min-width:0;max-width:none;height:auto;aspect-ratio:4/3;scroll-snap-align:start;scroll-snap-stop:always}
+.page [data-node-id="4304:43837"]>[data-name="List Item"]{flex:0 0 calc((100% - 4px)/2);width:calc((100% - 4px)/2);min-width:0}
+.page [data-node-id="4304:43915"] [data-node-id="4439:13895"]{width:100%;max-width:none;align-self:stretch}
